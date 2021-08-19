@@ -7,55 +7,131 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
+            <style>
+                html, body {
+                    font-family: 'Roboto', sans-serif;
+                }
+                .parent, .slot, .title, nav, .atc, #checkout {
+                    display:flex;
+                    flex-direction:row;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .slot {
+                    max-width:200%;
+                    max-height:600px;
+                    flex-direction: column;
+                    margin:10px
+                    
+                }
+
+                .slot:hover {
+                    box-shadow: 10px 10px 10px 10px cadetblue;
+                }
+
+                img {
+                    width:200px;
+                }
+                
+                nav {
+                    font-size: 30px;
+                    color:white;
+                    background-color: #032147;
+                    margin:0;
+                    height: 80px;
+                }
+                
+                .add, .remove {
+                    background-color: hsla(225, 41%, 37%, 0.103);
+                    margin: 5px;
+                    padding:10px;
+                    border: 1px solid black;
+                    box-shadow: 2px 3px  gray;
+                }
+            
+            </style>
 </head>
 <body>
-    <nav></nav>
-    <section class="title">
-        <div>You are Out of Line...</div>
-        <div>Welcome</div>
-    </section>
+    <nav> 
+        <div>Good Afternoon Saul your dressing room is available for another</div> 
+        <div>&nbsp; 30:00 &nbsp;</div>
+        <div>Minutes</div>
+    </nav>
+        
+        <section class="title">
+            <h1>You are Out of Line...<h1v>
+                <div>Welcome</div>
+        </section>
 
     <section id="in-cart" class="parent">
         <div class="slot">
             <img src="" alt="">
             <div class="name"></div>
             <div class="price"></div>
-            <div class="atc"></div>
+            <div class="atc">
+                    <div class="add">Keep</div>
+                    <div class="remove">Nah</div>
+            </div>
         </div>
         <div class="slot">
             <img src="" alt="">
             <div class="name"></div>
             <div class="price"></div>
-            <div class="atc"></div>
+            <div class="atc">
+                <div class="add">Keep</div>
+                <div class="remove">Nah</div>
+            </div>
         </div>
         <div class="slot">
             <img src="" alt="">
             <div class="name"></div>
             <div class="price"></div>
-            <div class="atc"></div>
+            <div class="atc">
+                <div class="add">Keep</div>
+                <div class="remove">Nah</div>
+            </div>
         </div>
     </section>
+
+
+<section class="title">
+    <h3>We took the liberty of adding som eitems we thought you would like<h3>
+    <div>Feel free to try them on, if you like them just hit that add to cart button</div>
+</section>
 
     <section id="recs" class="parent">
         <div class="slot">
             <img src="" alt="">
             <div class="name"></div>
             <div class="price"></div>
-            <div class="atc"></div>
+            <div class="atc"><div class="add">Add</div></div>
         </div>
         <div class="slot">
             <img src="" alt="">
             <div class="name"></div>
             <div class="price"></div>
-            <div class="atc"></div>
+            <div class="atc">
+                <div class="add">Add</div>
+            </div>
         </div>
         <div class="slot">
             <img src="" alt="">
             <div class="name"></div>
             <div class="price"></div>
-            <div class="atc"></div>
+            <div class="atc"><div class="add">Add</div></div>
         </div>
     </section>
+
+    <section id="checkout">
+        <div>
+            CHECKOUT
+        </div>
+    </section>
+
+
 </body>
 <script type="text/javascript">
     var RESPONSE;
@@ -110,7 +186,7 @@
 
         xhr.open("POST", "https://direct.dy-api.com/v2/serve/user/choose");
         xhr.setRequestHeader("Content-Type", "application/json");
-        
+
         xhr.setRequestHeader("DY-API-Key", "efa09b8c005ea63ffc3060d04ef7f79d3d5135d2a8d05df33598d8e54d01dadd");
    
 
@@ -122,8 +198,8 @@
         [].slice.call(PARENTS[0].querySelectorAll('.slot')).forEach(function (prod, idx) {
             var curData = data.slots[idx].productData
             prod.children[0].src = curData.image_url;
-            prod.children[1].textXontent = curData.name;
-            prod.children[2].textContent = curData.price;
+            prod.children[1].textContent = curData.name;
+            prod.children[2].textContent = '$' + Number(curData.price).toFixed(2);
         })
     }
 
@@ -132,8 +208,8 @@
         [].slice.call(PARENTS[1].querySelectorAll('.slot')).forEach(function (prod, idx) {
             var curData = data.slots[idx].productData
             prod.children[0].src = curData.image_url;
-            prod.children[1].textXontent = curData.name;
-            prod.children[2].textContent = curData.price;
+            prod.children[1].textContent = curData.name;
+            prod.children[2].textContent = '$' + Number(curData.price).toFixed(2);
         })
     }
 
@@ -146,5 +222,5 @@
         },1000)
       
 
-</script>ß
+</script>
 </html>
