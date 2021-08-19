@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta httpEquiv="Access-Control-Allow-Origin" content="*">
+    </meta>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav></nav>
+    <section class="title">
+        <div>You are Out of Line...</div>
+        <div>Welcome</div>
+    </section>
+
+    <section id="in-cart" class="parent">
+        <div class="slot">
+            <img src="" alt="">
+            <div class="name"></div>
+            <div class="price"></div>
+            <div class="atc"></div>
+        </div>
+        <div class="slot">
+            <img src="" alt="">
+            <div class="name"></div>
+            <div class="price"></div>
+            <div class="atc"></div>
+        </div>
+        <div class="slot">
+            <img src="" alt="">
+            <div class="name"></div>
+            <div class="price"></div>
+            <div class="atc"></div>
+        </div>
+    </section>
+
+    <section id="recs" class="parent">
+        <div class="slot">
+            <img src="" alt="">
+            <div class="name"></div>
+            <div class="price"></div>
+            <div class="atc"></div>
+        </div>
+        <div class="slot">
+            <img src="" alt="">
+            <div class="name"></div>
+            <div class="price"></div>
+            <div class="atc"></div>
+        </div>
+        <div class="slot">
+            <img src="" alt="">
+            <div class="name"></div>
+            <div class="price"></div>
+            <div class="atc"></div>
+        </div>
+    </section>
+</body>
+<script type="text/javascript">
+    var RESPONSE;
+    var PARENTS = document.querySelectorAll('.parent');
+
+    function getSkusFromURL() {
+        //url structure = ?sku=sku1,sku2,sku3
+        var location = window.location.href;
+        var skus = location.split('?sku=')[0].split(',');
+        return skus;
+
+    }
+
+    function getRecs() {
+        var data = JSON.stringify({
+            "user": {
+                "dyid": "8552335913049288897",
+                "dyid_server": "8552335913049288897"
+            },
+            "session": {
+                "dy": "v8t6mxr5w0hrligm6rlb2w9i005ipmmq"
+            },
+            "selector": {
+                "names": [
+                    "recs",
+                    "OOL items"
+                ]
+            },
+            "context": {
+                "page": {
+                    "type": "CART",
+                    "data": getSkusFromURL(),
+                    "location": "https://www.btyuo.com",
+                    "referrer": "https://www.google.com/"
+                },
+                "device": {
+                    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36 Edg/91.0.864.54",
+                    "ip": "186.146.43.195"
+                }
+            }
+        });
+
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === 4) {
+                RESPONSE = this.responseText;
+                console.log(this.responseText)
+            }
+        });
+
+        xhr.open("POST", "https://dy-api.com/v2/serve/user/choose");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+        xhr.setRequestHeader('Access-Control-Allow-Origin', 'https://dy-api.com/v2/serve/user/choose');
+        xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
+        xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+        xhr.setRequestHeader("DY-API-Key", "efa09b8c005ea63ffc3060d04ef7f79d3d5135d2a8d05df33598d8e54d01dadd");
+   
+
+        xhr.send(data);
+    }
+
+    function setCart() {
+        var data = JSON.stringify(RESPONSE.data.choices[1].variations[0].payload.data.slots[0].productData);
+        [].slice.call(PARENTS[0].querySelectorAll('slot')).forEach(function (prod, idx) {
+            prod.children[0].src = data.image_url;
+            prod.children[1].textXontent = data.name;
+            prod.children[2].textContent = data.price;
+        })
+    }
+
+    function setRecs() {
+        var data = JSON.stringify(RESPONSE.data.choices[0].variations[0].payload.data.slots[0].productData);
+        [].slice.call(PARENTS[0].querySelectorAll('slot')).forEach(function (prod, idx) {
+            prod.children[0].src = data.image_url;
+            prod.children[1].textXontent = data.name;
+            prod.children[2].textContent = data.price;
+        })
+    }
+
+  
+        getSkusFromURL()
+        getRecs();
+        setCart();
+        setRecs();
+
+
+</script>ß
+</html>
