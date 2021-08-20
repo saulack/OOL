@@ -136,14 +136,17 @@
 <script type="text/javascript">
     var RESPONSE;
     var PARENTS = document.querySelectorAll('.parent');
+    var SKUS;
+    var EMAIL;
+    var DYID;
 
-    function getSkusFromURL() {
-        //url structure = ?sku=sku1,sku2,sku3
-        var location = window.location.href;
-        var skus = location.split('?sku=')[0].split(',');
-        return skus;
-
+    function getURLParamValues() {
+        var params = new URLSearchParams(document.location.search.substring(1));
+        params.get("sku") ? SKUS = params.get("sku").split(',') : SKUS = []; 
+        params.get("dyid") ? DYID = params.get("dyid") : null;
+        params.get("email") ? EMAIL =  params.get("email") : null;
     }
+    getURLParamValues();
 
     function getRecs() {
         var data = JSON.stringify({
@@ -163,7 +166,7 @@
             "context": {
                 "page": {
                     "type": "CART",
-                    "data": getSkusFromURL(),
+                    "data": SKUS,
                     "location": "http://127.0.0.1:5500/index.html?sku=3542463610958,%203542463479886,%203542460858446",
                     "referrer": "https://www.google.com/"
                 },
