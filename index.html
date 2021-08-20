@@ -58,13 +58,14 @@
     <nav> 
         <div>Good Afternoon Saul your dressing room is available for another</div> 
         <div>&nbsp; 30:00 &nbsp;</div>
-        <div>Minutes</div>
+        <div>minutes</div>
     </nav>
         
         <section class="title">
             <h1>You are Out of Line...<h1v>
                 <div>Welcome</div>
         </section>
+
 
     <section id="in-cart" class="parent">
         <div class="slot">
@@ -232,28 +233,55 @@
             if (atcs.length > 1 ) {
                 toggleKeepNah(atcs);
     
-                } else {
-                // AddToMainCart(atcParent)
-                }
+            } else {
+                addToCollection(atcs[0]);
+            }
         }); 
     }
 
     function toggleKeepNah(els) {
         els.forEach(function(el) {
            el.addEventListener('click', function(){
-               el.className.indexOf('add') > -1 ? highlight(el, 'green') : highlight(el, 'red')
+               el.className.indexOf('add') > -1 ? highlight(el, 'cadetblue') : highlight(el, 'red')
            })
         })
     }
 
     function highlight(el, color) {
-        if (color == 'green') {
+        if (color == 'cadetblue') {
             el.style['background-color'] = color;
             el.nextElementSibling.style.background = 'hsla(225, 41%, 37%, 0.103)';
+            el.parentElement.parentElement.style['box-shadow'] = '5px 5px 5px 5px cadetblue';
         } else {
             el.style['background-color'] = color;
             el.previousElementSibling.style.background = 'hsla(225, 41%, 37%, 0.103)';
+            el.parentElement.parentElement.style['box-shadow'] = '5px 5px 5px 5px red';
         }
+    }
+
+    function addToCollection(el) {
+        var elArr = []
+        var slot = el.parentElement.parentElement;
+        el.addEventListener('click', function(){
+            PARENTS[0].appendChild(slot);
+            var newKeep = giveMeAnElement('div', 'add', 'Keep');
+            var newNah = giveMeAnElement('div', 'remove', 'Nah');
+            el.parentElement.appendChild(newKeep); 
+            el.parentElement.appendChild(newNah); 
+            elArr.push(newKeep)
+            elArr.push(newNah);
+            el.remove();
+            toggleKeepNah(elArr);
+            newKeep.click();
+            
+        })
+    }
+
+    function giveMeAnElement(type, className, text) {
+        var newEl = document.createElement(type);
+        newEl.className = className;
+        newEl.textContent = text;
+        return newEl;
     }
 
 
