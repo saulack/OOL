@@ -221,9 +221,41 @@
         setTimeout(function(){
             setCart();
             setRecs();
+            handleCartButtons()
 
         },1000)
       
+    function handleCartButtons() {
+        var atcParent = document.querySelectorAll('.atc');
+        var atcs = [].slice.call(atcParent).forEach( function(node) {
+            var atcs = [].slice.call(node.children);
+            if (atcs.length > 1 ) {
+                toggleKeepNah(atcs);
+    
+                } else {
+                // AddToMainCart(atcParent)
+                }
+        }); 
+    }
+
+    function toggleKeepNah(els) {
+        els.forEach(function(el) {
+           el.addEventListener('click', function(){
+               el.className.indexOf('add') > -1 ? highlight(el, 'green') : highlight(el, 'red')
+           })
+        })
+    }
+
+    function highlight(el, color) {
+        if (color == 'green') {
+            el.style['background-color'] = color;
+            el.nextElementSibling.style.background = 'hsla(225, 41%, 37%, 0.103)';
+        } else {
+            el.style['background-color'] = color;
+            el.previousElementSibling.style.background = 'hsla(225, 41%, 37%, 0.103)';
+        }
+    }
+
 
 </script>
 </html>
