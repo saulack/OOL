@@ -52,13 +52,20 @@
                     box-shadow: 2px 3px  gray;
                     border-radius: 5px;
                 }
+
+                .title {
+                    border: 1px solid rgba(0, 0, 0, 0.418);
+                    margin-top:20px;
+                    box-shadow: 1px 1px 1px 1px  solid lightgray;
+
+                }
             
             </style>
 </head>
 <body>
     <nav> 
-        <div>Good Afternoon Saul your dressing room is available for another</div> 
-        <div>&nbsp; 30:00 &nbsp;</div>
+        <div>Good Afternoon Saul your dressing room is available for </div> 
+        <div id="timer" style="margin-left:5px;margin-right:5px;"></div>
         <div>minutes</div>
     </nav>
         
@@ -217,16 +224,17 @@
             prod.children[2].textContent = '$' + Number(curData.price).toFixed(2);
         })
     }
-
-  
-        getRecs();
-        setTimeout(function(){
-            setCart();
-            setRecs();
-            handleCartButtons()
-
-        },1000)
-      
+    
+    
+    getRecs();
+    setTimeout(function(){
+        setCart();
+        setRecs();
+        handleCartButtons()
+        timer();
+        
+    },1000)
+    
     function handleCartButtons() {
         var atcParent = document.querySelectorAll('.atc');
         var atcs = [].slice.call(atcParent).forEach( function(node) {
@@ -283,6 +291,24 @@
         newEl.className = className;
         newEl.textContent = text;
         return newEl;
+    }
+
+    function timer() {
+       var countdown = 30 * 60 * 1000;
+        var timerId = setInterval(function () {
+            countdown -= 1000;
+            var min = Math.floor(countdown / (60 * 1000));
+            var sec = Math.floor((countdown - (min * 60 * 1000)) / 1000);  //correct
+
+            if (countdown <= 0) {
+                clearInterval(timerId);
+                //doSomething();
+            } else {
+                document.querySelector("#timer").textContent = (min + " : " + sec);
+            }
+
+        }, 1000); //1000ms. = 1sec.
+
     }
 
 
