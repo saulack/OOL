@@ -29,7 +29,7 @@
                 }
 
                 .slot:hover {
-                    box-shadow: 10px 10px 10px 10px cadetblue;
+                    box-shadow: 10px 10px 10px 10px rgba(47, 93, 131, 0.712);
                 }
 
                 img {
@@ -48,8 +48,9 @@
                     background-color: hsla(225, 41%, 37%, 0.103);
                     margin: 5px;
                     padding:10px;
-                    border: 1px solid black;
+                    border: 1px solid rgba(189, 189, 189, 0.472);
                     box-shadow: 2px 3px  gray;
+                    border-radius: 5px;
                 }
             
             </style>
@@ -63,7 +64,7 @@
         
         <section class="title">
             <h1>You are Out of Line...<h1v>
-                <div>Welcome</div>
+                <div>Welcome!</div>
         </section>
 
 
@@ -242,20 +243,20 @@
     function toggleKeepNah(els) {
         els.forEach(function(el) {
            el.addEventListener('click', function(){
-               el.className.indexOf('add') > -1 ? highlight(el, 'cadetblue') : highlight(el, 'red')
+               el.className.indexOf('add') > -1 ? highlight(el, 'rgba(47, 93, 131, 0.712)') : highlight(el, 'rgba(131, 13, 13, 0.438)')
            })
         })
     }
 
     function highlight(el, color) {
-        if (color == 'cadetblue') {
+        if (color == 'rgba(47, 93, 131, 0.712)') {
             el.style['background-color'] = color;
             el.nextElementSibling.style.background = 'hsla(225, 41%, 37%, 0.103)';
-            el.parentElement.parentElement.style['box-shadow'] = '5px 5px 5px 5px cadetblue';
+            el.parentElement.parentElement.style['box-shadow'] = '5px 5px 5px 5px rgba(47, 93, 131, 0.712)';
         } else {
             el.style['background-color'] = color;
             el.previousElementSibling.style.background = 'hsla(225, 41%, 37%, 0.103)';
-            el.parentElement.parentElement.style['box-shadow'] = '5px 5px 5px 5px red';
+            el.parentElement.parentElement.style['box-shadow'] = '5px 5px 5px 5px rgba(131, 13, 13, 0.438)';
         }
     }
 
