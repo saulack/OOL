@@ -39,7 +39,8 @@
                 nav {
                     font-size: 30px;
                     color:white;
-                    background-color: #032147;
+                    background-image: linear-gradient(to right, #032147, #0b42daf8);
+         
                     margin:0;
                     height: 80px;
                 }
@@ -54,14 +55,44 @@
                 }
                 
                 .title {
+                    width:80%;
+                    height:auto;
+                    margin:auto;
+                    align-items:center;
                     align-content: center;
+                    justify-content:center;
                     flex-direction: column;
-                    border: 1px solid rgba(0, 0, 0, 0.418);
+                    border: 1px solid rgba(109, 106, 106, 0.418);
+                    border-radius: 10px;
                     margin-top:20px;
-                    box-shadow: 1px 1px 1px 1px  solid lightgray;
+                    box-shadow: 3px 3px 3px 3px  solid rgb(83, 83, 83);
                     font-size:20px;
+                     
                 }
-                          
+
+                #timer {
+                    background-color: rgba(255, 255, 255, 0.486);
+                    color: crimson;
+                    padding:5px;
+                    border-radius: 10px;
+                    box-shadow: 1px 1px 1px 1px  solid lightgray;
+                    margin:10px;
+                }
+
+                #checkout {
+                    background-color: crimson;
+                    width: 100px;
+                    height: 100px;
+                    margin:50px 48%;
+                    border-radius: 20px;
+                    box-shadow: 3px 3px 3px 3px lightblue;
+                }
+
+                .title.top {
+                    background-image: linear-gradient(to right, #000000, #7c7b7bf8, black, #7c7b7bf8);
+                    color:white;
+                }
+              
             </style>
 </head>
 <body>
@@ -70,14 +101,16 @@
         <div id="timer" style="margin-left:5px;margin-right:5px;"></div>
         <div>minutes</div>
     </nav>
-        
-        <section class="title">
-            <h1>You are<h1>
-            <img src="./assets/image.png" alt="" style="height:100px;width:auto">
-            <div>WELCOME!</div>
-        </section>
+    
+    <section class="title top">
+        <h1 styler="margin-right:20px">MY FRIE ND YOU ARE<h1>
+        <img src="./assets/image.png" alt="" style="width:100%">
+        <div style="margin:20px">WELCOME!</div>
+    </section>
 
-
+    <div style="display:flex;">
+        <div style="margin:30px 25%; margin-top:20px;font-weight:bold;font-size: 20px;">HERE ARE THE ITEMS YOU CHOSE</div>
+    </div>    
     <section id="in-cart" class="parent">
         <div class="slot">
             <img src="" alt="">
@@ -109,7 +142,7 @@
     </section>
 
 
-<section class="title">
+<section class="title bottom">
     <h3>We took the liberty of adding some items we thought you would like<h3>
     <div>Feel free to try them on, if you like them just hit that add to cart button</div>
 </section>
@@ -313,6 +346,14 @@
         }, 1000); //1000ms. = 1sec.
 
     }
+
+    function checkout() {
+        var btn = document.querySelector('#checkout');
+        ben.addEventListener('click', function(){
+
+        })
+    }
+
 
 
 </script>
