@@ -36,7 +36,7 @@
                 
                 img {
                     width:200px;
-                    border-radius: 5px;;
+                    border-radius: 5px;
                 }
                 
                 nav {
@@ -91,8 +91,17 @@
                 }
 
                 .title.top {
-                    background-image: linear-gradient(to right, #000000, #7c7b7bf8, black, #7c7b7bf8);
-                    color:white;
+                    background-image: URL('./assets/image.png');
+                    background-repeat: no-repeat;
+                    background-size:cover;
+                    color:white; 
+                    justify-content: center;
+                    min-height: 180px;
+                }
+                
+                #hero-containter {
+                    width:100%;
+                    display: flex;
                 }
               
             </style>
@@ -104,11 +113,14 @@
         <div>minutes</div>
     </nav>
     
-    <section class="title top">
-        <h1 styler="margin-right:20px">MY FRIEND YOU ARE<h1>
-        <img src="./assets/image.png" alt="" style="width:125%">
-        <div style="margin:20px">WELCOME!</div>
-    </section>
+    
+    <section id="hero-containter">
+        <div class="title top">
+            <!-- <h1 styler="margin-right:20px">MY FRIEND YOU ARE<h1> -->
+                <!-- <img src="./assets/image.png" alt="" style="width:125%"> -->
+                <!-- <div style="margin-top:40px">WELCOME!</div> -->
+            </div>
+        </section>
 
     <div style="display:flex;">
         <div style="margin:30px 25%; margin-top:20px;font-weight:bold;font-size: 20px;">HERE ARE THE ITEMS YOU CHOSE</div>
@@ -347,12 +359,12 @@
 
     }
 
-    function checkout() {
-        var btn = document.querySelector('#checkout');
-        ben.addEventListener('click', function(){
+    // function checkout() {
+    //     var btn = document.querySelector('#checkout');
+    //     ben.addEventListener('click', function(){
 
-        })
-    }
+    //     })
+    // }
 
 
 
