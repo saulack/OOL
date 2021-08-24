@@ -336,16 +336,14 @@
         var timerId = setInterval(function () {
             countdown -= 1000;
             var min = Math.floor(countdown / (60 * 1000));
-            var sec = Math.floor((countdown - (min * 60 * 1000)) / 1000);  //correct
-
+            var sec = Math.floor((countdown - (min * 60 * 1000)) / 1000);  
             if (countdown <= 0) {
                 clearInterval(timerId);
-                //doSomething();
             } else {
-                sec > 9 ? document.querySelector("#timer").textContent = (min + " : " + sec) : document.querySelector("#timer").textContent = (min + " : " + '0' + sec);
+                sec > 9 ? document.querySelector("#timer").textContent = (min + " : " + sec) : 
+                document.querySelector("#timer").textContent = (min + " : " + '0' + sec);
             }
-
-        }, 1000); //1000ms. = 1sec.
+        }, 1000); 
 
     }
 
