@@ -342,7 +342,7 @@
                 clearInterval(timerId);
                 //doSomething();
             } else {
-                document.querySelector("#timer").textContent = (min + " : " + sec);
+                sec > 9 ? document.querySelector("#timer").textContent = (min + " : " + sec) : document.querySelector("#timer").textContent = (min + " : " + '0' + sec);
             }
 
         }, 1000); //1000ms. = 1sec.
